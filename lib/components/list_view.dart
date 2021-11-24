@@ -15,7 +15,7 @@ class Listviews extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        margin: EdgeInsets.symmetric(horizontal: 5),
+        margin: const EdgeInsets.symmetric(horizontal: 5),
         child: Card(
           elevation: 2,
           child: ListTile(

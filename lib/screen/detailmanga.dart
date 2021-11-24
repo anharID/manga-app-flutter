@@ -41,41 +41,84 @@ class _MangaDetailPageState extends State<MangaDetailPage> {
                   if (snapshot.hasData) {
                     return Column(children: [
                       Container(
-                        margin: EdgeInsets.only(top: 20),
+                        margin: const EdgeInsets.only(top: 20),
                         child: const Text(
                           "Details",
                           style: TextStyle(
                             fontSize: 25,
                             fontWeight: FontWeight.bold,
+                            color: Colors.blue,
                           ),
                         ),
                       ),
+                      Center(
+                        child: Container(
+                          height: 250,
+                          width: screenSize.width,
+                          margin: const EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 20),
+                          child: Image.network(snapshot.data!.imageUrl),
+                        ),
+                      ),
                       Container(
-                        height: 250,
-                        width: screenSize.width,
-                        margin:
-                            EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                        child: Row(
-                          children: [
-                            Image.network(snapshot.data!.imageUrl),
-                            Container(
-                              alignment: Alignment.centerLeft,
-                              padding: const EdgeInsets.only(left: 10),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text("Score : " +
-                                      snapshot.data!.score.toString()),
-                                  Text("Volume : " +
-                                      snapshot.data!.volume.toString()),
-                                  Text("Chapter : " +
-                                      snapshot.data!.chapter.toString()),
-                                  Text("Rank : " +
-                                      snapshot.data!.rank.toString())
-                                ],
-                              ),
-                            )
+                        padding: const EdgeInsets.only(left: 10),
+                        alignment: Alignment.centerLeft,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Text>[
+                            Text(
+                              "English Title : " + snapshot.data!.englishtitle,
+                              style: const TextStyle(
+                                  fontSize: 18, fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              "Japanese Title : " +
+                                  snapshot.data!.japanesetitle,
+                              style: const TextStyle(
+                                  fontSize: 18, fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              "Status : " + snapshot.data!.status,
+                              style: const TextStyle(
+                                  fontSize: 18, fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              "Score : " + snapshot.data!.score.toString(),
+                              style: const TextStyle(
+                                  fontSize: 18, fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              "Rank : " + snapshot.data!.rank.toString(),
+                              style: const TextStyle(
+                                  fontSize: 18, fontWeight: FontWeight.bold),
+                            ),
                           ],
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => CharacterList(
+                                      id: snapshot.data!.malId,
+                                      manga: snapshot.data!.title)));
+                        },
+                        child: Container(
+                          margin: const EdgeInsets.all(20),
+                          width: screenSize.width,
+                          child: const Card(
+                              color: Colors.white70,
+                              child: Padding(
+                                padding: EdgeInsets.all(20),
+                                child: Text(
+                                  "See Character List",
+                                  style: TextStyle(
+                                      fontSize: 25,
+                                      fontWeight: FontWeight.bold),
+                                  textAlign: TextAlign.center,
+                                ),
+                              )),
                         ),
                       ),
                       const Text(
@@ -114,20 +157,6 @@ class _MangaDetailPageState extends State<MangaDetailPage> {
                               textAlign: TextAlign.justify),
                         ),
                       ),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => CharacterList(
-                                      id: snapshot.data!.malId,
-                                      manga: snapshot.data!.title)));
-                        },
-                        child: const Card(
-                          elevation: 3,
-                          child: Text("Character"),
-                        ),
-                      ),
                     ]);
                   }
                   return const CircularProgressIndicator();
@@ -140,10 +169,11 @@ class DetailManga {
   final String title;
   final String sinopsis;
   final String background;
+  final String englishtitle;
+  final String japanesetitle;
+  final String status;
   final int malId;
   final num score;
-  final num volume;
-  final num chapter;
   final num rank;
 
   DetailManga({
@@ -151,10 +181,11 @@ class DetailManga {
     required this.title,
     required this.sinopsis,
     required this.background,
+    required this.englishtitle,
+    required this.japanesetitle,
+    required this.status,
     required this.malId,
     required this.score,
-    required this.volume,
-    required this.chapter,
     required this.rank,
   });
   factory DetailManga.fromJson(Map<String, dynamic> json) {
@@ -164,10 +195,11 @@ class DetailManga {
       sinopsis: json['synopsis'],
       malId: json['mal_id'],
       score: json['score'],
-      chapter: json['chapters'],
-      volume: json['volumes'],
       rank: json['rank'],
       background: json['background'],
+      englishtitle: json['title_english'],
+      japanesetitle: json['title_japanese'],
+      status: json['status'],
     );
   }
 }
