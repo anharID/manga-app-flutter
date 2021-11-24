@@ -24,7 +24,6 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    //Size screenSize = MediaQuery.of(context).size;
     return Scaffold(
         appBar: AppBar(
           title: const Text("Rekomendasi Manga"),
@@ -75,7 +74,6 @@ class _HomePageState extends State<HomePage> {
 
 class Recommendation {
   Recommendation({
-    //required this.rate,
     required this.title,
     required this.image,
     required this.malId,
@@ -85,14 +83,12 @@ class Recommendation {
     return Recommendation(
       malId: json['mal_id'],
       title: json['title'],
-      //rate: json['score'],
       image: json['image_url'],
     );
   }
 
   final String image;
   final int malId;
-  //final num rate;
   final String title;
 }
 
@@ -105,7 +101,6 @@ Future<List<Recommendation>> fetchRecommendation() async {
 
   if (response.statusCode == 200) {
     final List airingJson = jsonDecode(response.body)['recommendations'];
-    // var airingJson = jsonDecode(response.body)['top'] as List;
 
     return airingJson
         .map((recommmendation) => Recommendation.fromJson(recommmendation))

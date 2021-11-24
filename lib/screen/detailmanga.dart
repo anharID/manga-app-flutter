@@ -24,7 +24,6 @@ class _MangaDetailPageState extends State<MangaDetailPage> {
   @override
   void initState() {
     super.initState();
-    // character = fetchMangaCharacter(context);
     detail = fetchDetailManga(widget.item);
   }
 
@@ -147,10 +146,6 @@ class DetailManga {
   final num chapter;
   final num rank;
 
-  // final String name;
-  // final String imgUrl;
-  // final int caracterId;
-
   DetailManga({
     required this.imageUrl,
     required this.title,
@@ -161,9 +156,6 @@ class DetailManga {
     required this.volume,
     required this.chapter,
     required this.rank,
-    // required this.name,
-    // required this.imgUrl,
-    // required this.caracterId,
   });
   factory DetailManga.fromJson(Map<String, dynamic> json) {
     return DetailManga(
@@ -176,9 +168,6 @@ class DetailManga {
       volume: json['volumes'],
       rank: json['rank'],
       background: json['background'],
-      // caracterId: json['mal_id'],
-      // name: json['name'],
-      // imgUrl: json['image_url'],
     );
   }
 }
