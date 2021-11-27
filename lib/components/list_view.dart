@@ -18,6 +18,7 @@ class Listviews extends StatelessWidget {
         margin: const EdgeInsets.symmetric(horizontal: 5),
         child: Card(
           elevation: 2,
+          shadowColor: Colors.blue,
           child: ListTile(
             leading: Image.network(mangaImage),
             title: Text(

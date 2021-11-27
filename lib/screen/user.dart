@@ -12,6 +12,9 @@ class _UserProfileState extends State<UserProfile> {
   @override
   Widget build(BuildContext context) {
     const mail = "anhar2506@students.undip.ac.id";
+    const nim = "21120119120012";
+    const school = "Universitas Diponegoro";
+    const address = "Semarang";
     return Scaffold(
         appBar: AppBar(
           title: Text("User Profile"),
@@ -20,7 +23,7 @@ class _UserProfileState extends State<UserProfile> {
           child: Column(
             children: [
               Container(
-                  height: 250,
+                  height: 300,
                   width: MediaQuery.of(context).size.width,
                   margin: EdgeInsets.symmetric(vertical: 30),
                   child: const CircleAvatar(
@@ -29,7 +32,7 @@ class _UserProfileState extends State<UserProfile> {
                   )),
               const Text(
                 "Anhar",
-                style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
               ),
               const Text(
                 "Teknik Komputer 2019",
@@ -42,10 +45,10 @@ class _UserProfileState extends State<UserProfile> {
                   color: Colors.blue,
                 ),
               ),
+              const InfoCard(text: nim, icon: Icons.perm_identity),
               const InfoCard(text: mail, icon: Icons.mail),
-              const InfoCard(text: mail, icon: Icons.mail),
-              const InfoCard(text: mail, icon: Icons.mail),
-              const InfoCard(text: mail, icon: Icons.mail),
+              const InfoCard(text: school, icon: Icons.school),
+              const InfoCard(text: address, icon: Icons.maps_home_work),
             ],
           ),
         ));

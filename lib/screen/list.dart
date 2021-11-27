@@ -28,7 +28,8 @@ class _ListMangaState extends State<ListManga> {
         appBar: AppBar(
           title: const Text("Top List Manga"),
         ),
-        body: SingleChildScrollView(
+        body: Center(
+            child: SingleChildScrollView(
           child: Column(
             children: [
               Padding(
@@ -71,13 +72,13 @@ class _ListMangaState extends State<ListManga> {
                           );
                         }
 
-                        return const Text("Loading");
+                        return const CircularProgressIndicator();
                       },
                     )),
               )
             ],
           ),
-        ));
+        )));
   }
 }
 
@@ -106,7 +107,7 @@ class Show {
 
 Future<List<Show>> fetchShows() async {
   final response =
-      await http.get(Uri.parse('https://api.jikan.moe/v3/top/manga'));
+      await http.get(Uri.parse('https://api.jikan.moe/v3/top/manga/1/manga'));
 
   if (response.statusCode == 200) {
     var topShowsJson = jsonDecode(response.body)['top'] as List;

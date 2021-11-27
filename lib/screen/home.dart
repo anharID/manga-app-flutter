@@ -28,8 +28,9 @@ class _HomePageState extends State<HomePage> {
         appBar: AppBar(
           title: const Text("Rekomendasi Manga"),
         ),
-        body: SingleChildScrollView(
-            child: Column(
+        body: Center(
+            child: SingleChildScrollView(
+                child: Column(
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 5),
@@ -62,13 +63,13 @@ class _HomePageState extends State<HomePage> {
                                 crossAxisCount: 2),
                       );
                     }
-                    return const Text("Loading");
+                    return const CircularProgressIndicator();
                   },
                 ),
               ),
             )
           ],
-        )));
+        ))));
   }
 }
 
@@ -96,7 +97,7 @@ class Recommendation {
 
 Future<List<Recommendation>> fetchRecommendation() async {
   final response = await http.get(
-    Uri.parse('https://api.jikan.moe/v3/manga/2/recommendations'),
+    Uri.parse('https://api.jikan.moe/v3/manga/598/recommendations'),
   );
 
   if (response.statusCode == 200) {

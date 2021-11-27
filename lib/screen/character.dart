@@ -33,8 +33,9 @@ class _CharacterListState extends State<CharacterList> {
         appBar: AppBar(
           title: Text(widget.manga),
         ),
-        body: SingleChildScrollView(
-            child: Column(
+        body: Center(
+            child: SingleChildScrollView(
+                child: Column(
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 5),
@@ -68,13 +69,13 @@ class _CharacterListState extends State<CharacterList> {
                                 crossAxisCount: 3),
                       );
                     }
-                    return const Text("Loading");
+                    return const CircularProgressIndicator();
                   },
                 ),
               ),
             )
           ],
-        )));
+        ))));
   }
 }
 
