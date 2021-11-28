@@ -30,46 +30,43 @@ class _HomePageState extends State<HomePage> {
         ),
         body: Center(
             child: SingleChildScrollView(
-                child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 5),
-              child: SizedBox(
-                child: FutureBuilder<List<Recommendation>>(
-                  future: recommendation,
-                  builder: (context, snapshot) {
-                    if (snapshot.hasData) {
-                      return GridView.builder(
-                        physics: const BouncingScrollPhysics(),
-                        shrinkWrap: true,
-                        itemCount: snapshot.data!.length,
-                        itemBuilder: (BuildContext context, int index) =>
-                            GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => MangaDetailPage(
-                                        item: snapshot.data![index].malId,
-                                        title: snapshot.data![index].title)));
-                          },
-                          child: CardView(
-                            mangaImage: snapshot.data![index].image,
-                            mangaTitle: snapshot.data![index].title,
-                          ),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 5),
+            child: SizedBox(
+              child: FutureBuilder<List<Recommendation>>(
+                future: recommendation,
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    return GridView.builder(
+                      physics: const BouncingScrollPhysics(),
+                      shrinkWrap: true,
+                      itemCount: snapshot.data!.length,
+                      itemBuilder: (BuildContext context, int index) =>
+                          GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => MangaDetailPage(
+                                      item: snapshot.data![index].malId,
+                                      title: snapshot.data![index].title)));
+                        },
+                        child: CardView(
+                          mangaImage: snapshot.data![index].image,
+                          mangaTitle: snapshot.data![index].title,
                         ),
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 2),
-                      );
-                    }
-                    return const CircularProgressIndicator();
-                  },
-                ),
+                      ),
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2),
+                    );
+                  }
+                  return const CircularProgressIndicator();
+                },
               ),
-            )
-          ],
-        ))));
+            ),
+          ),
+        )));
   }
 }
 
