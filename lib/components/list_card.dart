@@ -17,7 +17,7 @@ class InfoCard extends StatelessWidget {
       child: Card(
         elevation: 1,
         shadowColor: Colors.blue,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
         child: ListTile(
             leading: Icon(
               icon,

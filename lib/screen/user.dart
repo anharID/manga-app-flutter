@@ -19,7 +19,8 @@ class _UserProfileState extends State<UserProfile> {
         appBar: AppBar(
           title: Text("User Profile"),
         ),
-        body: Center(
+        body: SingleChildScrollView(
+            child: Center(
           child: Column(
             children: [
               Container(
@@ -51,6 +52,6 @@ class _UserProfileState extends State<UserProfile> {
               const InfoCard(text: address, icon: Icons.maps_home_work),
             ],
           ),
-        ));
+        )));
   }
 }

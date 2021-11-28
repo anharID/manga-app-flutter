@@ -110,6 +110,6 @@ Future<List<Recommendation>> fetchRecommendation() async {
     //jika tidak di mapping hanya mendapat instance
     //intance of keynya
   } else {
-    throw Exception('Failed to load airing');
+    throw Exception('Failed to load Recomendation');
   }
 }
